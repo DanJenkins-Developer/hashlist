@@ -10,6 +10,8 @@ def main():
     with open(f_name) as f:
         data = json.load(f)
 
+    hashes_file = open("hashes.txt", "w")
+
 
     print(data["data"].keys())
     print(data["data"]["file_list"])
@@ -29,6 +31,8 @@ def main():
 
             file_count += 1
 
+            hashes_file.write(file["meta_data"]["hashes"]["sha256"] + "\n")
+
 
             if (file["meta_data"]["hashes"]["sha256"] == hash_256):
                 print("Found the file!")
@@ -38,7 +42,6 @@ def main():
     print("Total files: " + str(file_count))
     print ("Searching for hash: " + hash_256)
     print("Found file: " + found_file)
-
 
 
 
